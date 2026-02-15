@@ -1,21 +1,33 @@
 # 🗂️ Sitemap Generator
 
-A powerful and easy-to-use command-line tool to automatically generate website sitemaps. Drop a URL and get your site structure in seconds!
+**Automatically discover and map your website structure.**
+
+An open-source tool from **Meridian 127** that generates sitemaps by analyzing your website's structure. Essential for AI visibility and SEO optimization.
 
 ## ✨ Features
 
-- **Automatic Sitemap Detection** - Finds and parses existing `sitemap.xml` files
-- **Smart Web Crawling** - Falls back to automatic crawling if sitemap not found
-- **Manual Mode** - Create custom site structures by hand
-- **File Export** - Save results as `.txt` files
-- **Cross-Platform** - Works on macOS, Linux, and Windows (Git Bash)
-- **Zero Dependencies** - Only uses `curl` and `grep` (pre-installed on most systems)
+- **Automatic Sitemap Detection** — Finds and parses existing `sitemap.xml` files
+- **Smart Web Crawling** — Falls back to automatic crawling if sitemap not found
+- **Manual Mode** — Create custom site structures by hand
+- **File Export** — Save results as `.txt` files with timestamp
+- **Cross-Platform** — Works on macOS, Linux, and Windows (Git Bash)
+- **Zero Dependencies** — Only uses `curl` and `grep` (pre-installed on most systems)
+
+## 🎯 Why This Matters
+
+A proper sitemap is fundamental for:
+- **AI Understanding** — Helps LLMs (ChatGPT, Claude, Perplexity) discover your pages
+- **Search Visibility** — Google, Bing, and other search engines need clear structure
+- **SEO Optimization** — Well-organized sitemaps improve crawlability
+- **Local Business Discovery** — Critical for local SEO and AI recommendations
+
+This tool makes it simple to understand and document your site's architecture.
 
 ## 📋 Prerequisites
 
-- Bash shell
-- `curl` (for fetching URLs)
-- `grep` (for parsing)
+- **Bash** shell (macOS, Linux, or Git Bash on Windows)
+- **curl** (for fetching URLs)
+- **grep** (for parsing)
 
 Most systems have these built-in. If not:
 
@@ -36,7 +48,7 @@ sudo apt-get install curl grep
 ### Option 1: Clone from GitHub (Recommended)
 
 ```bash
-git clone https://github.com/Facchi-Marco/sitemap-generator
+git clone https://github.com/Meridian-127/sitemap-generator
 cd sitemap-generator
 chmod +x sitemap-generator.sh
 ```
@@ -44,10 +56,7 @@ chmod +x sitemap-generator.sh
 ### Option 2: Download Directly
 
 ```bash
-# Download the script
-curl -O https://raw.githubusercontent.com/Facchi-Marco/sitemap-generator/main/sitemap-generator.sh
-
-# Make it executable
+curl -O https://raw.githubusercontent.com/Meridian-127/sitemap-generator/main/sitemap-generator.sh
 chmod +x sitemap-generator.sh
 ```
 
@@ -79,14 +88,15 @@ Option (1-3):
 
 ```bash
 Option (1-3): 1
-URL du site (ex: exemple.com ou https://exemple.com): google.com
+URL du site (ex: exemple.com ou https://exemple.com): myhotel.com
 ```
 
 The script will:
-1. ✅ Try to find and parse `sitemap.xml`
-2. ✅ If not found, automatically crawl the site
-3. ✅ Display results in the terminal
-4. ✅ Ask if you want to save to a file
+1. ✅ Search for `sitemap.xml`
+2. ✅ If found, parse it and display all pages
+3. ✅ If not found, automatically crawl the site
+4. ✅ Save results to a file
+5. ✅ Display on screen
 
 **Example Output:**
 ```
@@ -94,57 +104,61 @@ The script will:
 ✓ Sitemap trouvé!
 ℹ Parsing du sitemap...
 
-SITEMAP: google.com
-Source: https://google.com/sitemap.xml
-Date: Mon Feb 14 12:30:45 CET 2025
+SITEMAP: myhotel.com
+Source: https://myhotel.com/sitemap.xml
+Date: Sun Feb 15 14:30:45 CET 2026
 ─────────────────────────────────────────
 
   📄 /
-  📄 /about
-  📄 /products
+  📄 /rooms
+  📄 /restaurant
   📄 /contact
-  📄 /blog
+  📄 /booking
 ```
 
 **Save to File:**
 ```
 Sauvegarder dans un fichier? (o/n): o
-Nom du fichier (défaut: sitemap_20250214_123045.txt): my-sitemap.txt
-✓ Sauvegardé dans: /Users/yourname/my-sitemap.txt
+Nom du fichier (défaut: sitemap_20260215_143022.txt): 
+✓ Sauvegardé dans: /Users/username/sitemap_20260215_143022.txt
 ```
 
 ### Option 2: Create Manually
 
 ```bash
 Option (1-3): 2
-Nom du site: My Awesome Website
+Nom du site: My Hotel
 ```
 
 Then enter your site structure (press `Ctrl+D` when done):
 
 ```
 Accueil
-About
+Rooms
+- Standard
+- Deluxe
+- Suite
+Restaurant
 Services
-- Web Design
-- Development
-- Consulting
-Blog
+- Spa
+- Gym
 Contact
 ```
 
 **Output:**
 ```
-SITEMAP: My Awesome Website
+SITEMAP: My Hotel
 ─────────────────────────────────────────
 
 Accueil
-About
+Rooms
+- Standard
+- Deluxe
+- Suite
+Restaurant
 Services
-- Web Design
-- Development
-- Consulting
-Blog
+- Spa
+- Gym
 Contact
 ```
 
@@ -158,69 +172,78 @@ Closes the program.
 
 ## 🎯 Examples
 
-### Analyze GitHub
+### Analyze a Hotel Website
 
 ```bash
 ./sitemap-generator.sh
-# Choose option 1
-# Enter: github.com
-# Choose crawl depth when asked
-```
-
-### Analyze Your Own Website
-
-```bash
-./sitemap-generator.sh
-# Choose option 1
-# Enter: https://yourwebsite.com
+# Choose: 1
+# Enter: myhotel.com
 # Wait for results
 ```
 
-### Create a Portfolio Sitemap
+### Analyze a Restaurant
 
 ```bash
 ./sitemap-generator.sh
-# Choose option 2
-# Enter: My Portfolio
-# Type your structure manually
+# Choose: 1
+# Enter: myrestaurant.ch
+# Get instant structure
+```
+
+### Create a Manual Sitemap
+
+```bash
+./sitemap-generator.sh
+# Choose: 2
+# Enter: My Business
+# Type your structure
 ```
 
 ## 📁 Output Files
 
-Files are saved in the directory where you run the script with names like:
+Files are saved in your current directory with timestamp:
+
 ```
-sitemap_20250214_120530.txt
-sitemap_20250214_120545.txt
-my-sitemap.txt
+sitemap_20260215_143022.txt
+sitemap_20260215_143045.txt
+sitemap_20260215_143100.txt
 ```
 
-Find them in your current folder:
+Manage your files:
+
 ```bash
 # List all sitemap files
 ls sitemap*.txt
 
-# Open a file
-cat sitemap_20250214_120530.txt
+# View a file
+cat sitemap_20260215_143022.txt
 
-# Or open in your text editor
-code my-sitemap.txt
+# Open in editor
+nano sitemap_20260215_143022.txt
 ```
 
-## ⚙️ Advanced Usage
+## 📋 File Format
 
-### Custom Crawl Depth
-
-When crawling a website, you can control how deep the crawler goes:
+Output format is simple and readable:
 
 ```
-Profondeur de crawl (1-3, défaut: 2): 1  # Shallow - faster
-Profondeur de crawl (1-3, défaut: 2): 2  # Medium - balanced
-Profondeur de crawl (1-3, défaut: 2): 3  # Deep - thorough (slower)
+SITEMAP: example.com
+Source: https://example.com/sitemap.xml
+Date: Sun Feb 15 14:30:45 CET 2026
+─────────────────────────────────────────
+
+  📄 /
+  📄 /about
+  📄 /services
+  📄 /contact
 ```
 
-### Running Without Interactive Menu
-
-For scripting purposes, you can modify the script to accept command-line arguments.
+Perfect for:
+- Documentation
+- Team sharing
+- Spreadsheet import
+- Presentation purposes
+- AI optimization planning
 
 ## 🔧 Troubleshooting
 
@@ -233,160 +256,76 @@ chmod +x sitemap-generator.sh
 
 ### "URL vide!" Error
 
-You must enter a URL. Examples:
-- `google.com` ✅
-- `https://github.com` ✅
-- `youtube.com` ✅
+You must enter a valid URL:
+- ✅ `google.com`
+- ✅ `https://github.com`
+- ✅ `wikipedia.org`
 
 ### Crawling Takes Too Long
 
-Reduce the crawl depth:
-```
-Profondeur de crawl (1-3, défaut: 2): 1
-```
+Some sites are slow. Try:
+1. Check your internet connection
+2. Use a shallower crawl depth (1 instead of 2)
+3. Try the site's official `sitemap.xml` first
 
-### No Results Found
+### "Sitemap.xml non trouvé"
 
-Some sites block automated crawling. Try:
-1. Checking if the site has a public `sitemap.xml`
-2. Using a shallower crawl depth (1 instead of 2)
-3. Creating the sitemap manually
+If automatic crawling fails:
+1. Use **Option 2** (manual mode) to create your structure
+2. Check if the site allows crawling (check `robots.txt`)
+3. Try with `https://` prefix
 
-## 📝 File Format
+## 💼 For Meridian 127 Clients
 
-Output files are plain text with a simple format:
+This tool is part of our commitment to **transparency** and helping you understand your website's structure.
 
-```
-SITEMAP: example.com
-Source: https://example.com/sitemap.xml
-Date: Mon Feb 14 12:30:45 CET 2025
-─────────────────────────────────────────
+A well-organized sitemap is the foundation of:
+- ✅ AI visibility (schema.org, JSON-LD)
+- ✅ Search engine optimization
+- ✅ User experience
+- ✅ Content strategy
 
-  📄 /
-  📄 /about
-  📄 /products
-  📄 /contact
-```
+**Next step:** Use our **AI Visibility Audit Tool** to optimize your structure for AI discovery.
 
-You can:
-- Edit them in any text editor
-- Import them into spreadsheets
-- Convert them to other formats
-- Share them with your team
+## 📚 Learn More
+
+- **Schema.org Documentation:** https://schema.org
+- **Google Search Central:** https://developers.google.com/search
+- **Sitemap Protocol:** https://www.sitemaps.org
+- **Meridian 127:** https://meridian127.com
+- **AI Visibility Audit Tool:** https://github.com/Meridian-127/ai-visibility-audit
 
 ## 🤝 Contributing
 
-Found a bug? Have an idea? Feel free to:
+Found a bug or have an idea?
+
 1. Fork the repository
 2. Create a feature branch
 3. Submit a pull request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License — Use freely, modify, and share.
 
-```
-MIT License
+Copyright (c) 2025 Meridian 127
 
-Copyright (c) 2025 Facchi-Marco
+## 🙌 About Meridian 127
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+We help local businesses become visible to AI systems like ChatGPT, Claude, and Perplexity.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
+In today's world, **if AI can't see you, your customers can't find you**.
 
-## 💡 Tips & Tricks
+We provide tools and strategies to optimize your digital presence for the AI-first future.
 
-### Batch Process Multiple Sites
-
-```bash
-for site in google.com github.com wikipedia.org; do
-  echo "Processing $site..."
-  ./sitemap-generator.sh << EOF
-1
-$site
-1
-n
-n
-EOF
-done
-```
-
-### View Files Quickly
-
-```bash
-# Show all generated sitemaps
-cat sitemap_*.txt
-
-# Show the most recent one
-cat $(ls -t sitemap_*.txt | head -1)
-```
-
-### Copy to Clipboard (macOS)
-
-```bash
-cat my-sitemap.txt | pbcopy
-```
-
-### Copy to Clipboard (Linux)
-
-```bash
-cat my-sitemap.txt | xclip -selection clipboard
-```
-
-## 🚀 Quick Start Cheat Sheet
-
-```bash
-# Clone
-git clone https://github.com/Facchi-Marco/sitemap-generator
-cd sitemap-generator
-
-# Make executable
-chmod +x sitemap-generator.sh
-
-# Run
-./sitemap-generator.sh
-
-# Then choose option 1, enter your URL, and follow prompts!
-```
-
-## ❓ FAQ
-
-**Q: Can I use this on Windows?**
-A: Yes! Use Git Bash (comes with Git for Windows).
-
-**Q: Does this work with dynamic websites?**
-A: It works best with static sites. Dynamic sites may require JavaScript rendering (not supported yet).
-
-**Q: Can I export to JSON or XML?**
-A: Currently exports to `.txt`. You can convert manually or request this feature!
-
-**Q: Is my data safe?**
-A: Yes! Everything runs locally on your computer. No data is sent anywhere.
-
-**Q: Why is crawling slow?**
-A: The script respects server resources. Use lower crawl depth for faster results.
-
-## 📞 Support
-
-If you have questions or issues:
-1. Check the Troubleshooting section above
-2. Review examples in this README
-3. Open an issue on GitHub
+**Discover your AI visibility:** https://meridian127.com
 
 ---
 
-**Made with ❤️ by Marco Facchi**
+**Made with precision and expertise by Meridian 127**
 
-⭐ If you find this useful, please consider giving it a star on GitHub!
+*Precision suisse. Exigence française. Impact global.*
 
 ```bash
-# Happy crawling! 🚀
+# Get started in seconds
 ./sitemap-generator.sh
 ```
